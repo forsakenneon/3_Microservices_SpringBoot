@@ -42,7 +42,7 @@ public class Microservice1Application {
 			String jsonUser = HTTPUtils.getBody(request);
 			DBService.addOne(jsonUser);
 			response.setContentType("text/html");
-			response.getWriter().println("<h1>" + "Added Student:" + jsonUser + "</h1>");
+			response.getWriter().println("<h1>" + "Added User:" + jsonUser + "</h1>");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -67,7 +67,7 @@ public class Microservice1Application {
 			String jsonUser = HTTPUtils.getBody(request);
 			DBService.deleteOne(jsonUser);
 			response.setContentType("text/html");
-			response.getWriter().println("<h1>" + "Deleted student with id:" + jsonUser + "</h1>");
+			response.getWriter().println("<h1>" + "Deleted User with id:" + jsonUser + "</h1>");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
