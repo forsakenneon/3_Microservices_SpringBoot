@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import db.service.DBService;
 import user.User;
 
 @RestController
@@ -17,7 +18,11 @@ public class UserRestController {
 	// TODO: 3. Send HTTP response LIST USERS
 	@GetMapping("/all")
 	public List<User> getAll() {
-		
+		try {
+			DBService.getAll();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return null;
 	}
 }
