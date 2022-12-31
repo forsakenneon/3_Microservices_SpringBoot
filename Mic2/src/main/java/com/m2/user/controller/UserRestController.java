@@ -1,8 +1,8 @@
 package com.m2.user.controller;
 
-import java.util.concurrent.TimeUnit;
-
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -15,10 +15,17 @@ import com.m2.db.service.DBService;
 public class UserRestController {
 
 	@PostMapping("/add")
-	public void postUser(@RequestBody String jsonUser,@RequestParam String id) throws Exception {
-		System.out.println("Waiting a 2 sec");
-		System.out.println("User id is:" + id);
-		TimeUnit.SECONDS.sleep(2);
-		DBService.addOne(jsonUser, id);
+	public void postUser(@RequestBody String jsonUser, @RequestParam String id) throws Exception {
+		DBService.addMiddleName(jsonUser, id);
+	}
+
+	@PutMapping("/update")
+	public void putUser(@RequestBody String jsonUser, @RequestParam String id) throws Exception {
+		DBService.addMiddleName(jsonUser, id);
+	}
+
+	@DeleteMapping("/delete")
+	public void deleteUser(@RequestParam String id) {
+		DBService.deleteMiddleName(id);
 	}
 }
