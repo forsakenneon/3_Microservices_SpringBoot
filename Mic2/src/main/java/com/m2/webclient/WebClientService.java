@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.ClientResponse;
 import org.springframework.web.reactive.function.client.WebClient;
 
-import com.m2.user.User;
+import com.m2.db.entity.User;
 
 import reactor.core.publisher.Mono;
 
@@ -16,16 +16,27 @@ public class WebClientService {
 	WebClient webClient = WebClient.builder().baseUrl("http://localhost:8093/user")
 			.defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
 			.defaultHeader(HttpHeaders.ACCEPT, MediaType.APPLICATION_JSON_VALUE).build();
-	
+
 	/*
-	 * public Mono<ClientResponse> create(User user) { return this.webClient.post()
-	 * .uri("/add") .header(HttpHeaders.CONTENT_TYPE,
-	 * MediaType.APPLICATION_JSON_VALUE) .body(Mono.just(user), User.class)
-	 * .exchange(); }
+	 * public ClientResponse get(User user) {
+	 * 
+	 * }
 	 */
-	
-	public ClientResponse create(User user) {
-		return webClient.post().uri("/add").body(Mono.just(user), User.class).retrieve()
+
+	public ClientResponse post(User user, String id) {
+		return webClient.post().uri("/add/" + id).body(Mono.just(user), User.class).retrieve()
 				.bodyToMono(ClientResponse.class).block();
+	}
+
+	public ClientResponse put(User user, String id) {
+		return webClient.put().uri("/update/" + id).body(Mono.just(user), User.class).retrieve()
+				.bodyToMono(ClientResponse.class).block();
+	}
+
+	public void delete(String id) {
+		webClient.delete().uri("/delete/" + id)
+        .retrieve()
+        .bodyToMono(String.class)
+        .block();
 	}
 }

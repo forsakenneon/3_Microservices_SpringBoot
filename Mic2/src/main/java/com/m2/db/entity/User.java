@@ -1,4 +1,4 @@
-package com.m3.user;
+package com.m2.db.entity;
 
 import lombok.Data;
 
