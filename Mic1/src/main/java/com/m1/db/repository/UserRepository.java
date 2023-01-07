@@ -1,26 +1,20 @@
-package com.m1.db.service;
+package com.m1.db.repository;
 
 import org.bson.Document;
 import org.bson.conversions.Bson;
 
 import com.m1.db.DBContext;
-import com.m1.user.User;
-import com.m1.utils.JsonUtil;
+import com.m1.db.entity.User;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBObject;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.model.Updates;
 
-public class DBService {
+public class UserRepository {
 
-	public static String getIdFromJsonBody(String jsonUser) throws Exception {
-		return JsonUtil.fromJsontoUser(jsonUser).get_id();
-	}
-
-	public static void addFirstName(String jsonUser, String id) {
+	public static void addFirstName(User user, String id) {
 		try {
 			MongoCollection<Document> collection = DBContext.fetchCollection("data", "Users", Document.class);
-			User user = JsonUtil.fromJsontoUser(jsonUser);
 			Document document = new Document("_id", id);
 			document.put("firstName", user.getFirstName());
 			collection.insertOne(document);
@@ -30,10 +24,10 @@ public class DBService {
 		}
 	}
 
-	public static void updateFirstName(String jsonUser, String id) throws Exception {
+	public static void updateFirstName(User user, String id) throws Exception {
 		MongoCollection<User> collection = DBContext.fetchCollection("data", "Users", User.class);
 		collection.updateOne(new Document("_id", id),
-				Updates.set("firstName", JsonUtil.fromJsontoUser(jsonUser).getFirstName()));
+				Updates.set("firstName", user.getFirstName()));
 	}
 
 	public static void deleteFirstName(String id) {
