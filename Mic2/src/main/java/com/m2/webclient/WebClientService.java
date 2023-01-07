@@ -17,12 +17,6 @@ public class WebClientService {
 			.defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
 			.defaultHeader(HttpHeaders.ACCEPT, MediaType.APPLICATION_JSON_VALUE).build();
 
-	/*
-	 * public ClientResponse get(User user) {
-	 * 
-	 * }
-	 */
-
 	public ClientResponse post(User user, String id) {
 		return webClient.post().uri("/add/" + id).body(Mono.just(user), User.class).retrieve()
 				.bodyToMono(ClientResponse.class).block();

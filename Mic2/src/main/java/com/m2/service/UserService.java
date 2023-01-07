@@ -14,7 +14,18 @@ public class UserService {
 	
 	@Autowired
 	private WebClientService webClientService;
-
+	
+	public String getUser(String id) {
+		try {
+			String middlename = UserRepository.getMiddleName(id);
+			System.out.println("Middlename is - " + middlename);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return id;
+	}
+	
 	public void postUser(User user, String id) throws Exception {
 		UserRepository.addMiddleName(user, id);
 		webClientService.post(user, id);

@@ -17,6 +17,18 @@ public class UserService {
 	@Autowired
 	private FeignService feign;
 	
+	public String getUser(String id) {
+		try {
+			String firstname = UserRepository.getFirstName(id);
+			feign.GetMidName(id);
+			System.out.println("Firstname is - " + firstname);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return id;
+	}
+	
 	public void postUser(String jsonUser) {
 		String id = UserUtils.generateId();
 		User user;
