@@ -16,14 +16,16 @@ public class UserService {
 	private WebClientService webClientService;
 	
 	public String getUser(String id) {
+		String middlename = null;
 		try {
-			String middlename = UserRepository.getMiddleName(id);
+			middlename = UserRepository.getMiddleName(id);
 			System.out.println("Middlename is - " + middlename);
+			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return id;
+		return middlename;
 	}
 	
 	public void postUser(User user, String id) throws Exception {

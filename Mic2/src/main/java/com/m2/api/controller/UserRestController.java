@@ -24,8 +24,8 @@ public class UserRestController {
 	private final UserService userService;
 	
 	@GetMapping(path="/get/{id}")
-	public void getUser(@PathVariable String id) {
-		userService.getUser(id);
+	public String getUser(@PathVariable String id) {
+		return userService.getUser(id);
 	}
 	
 	@PostMapping("/add/{id}")
