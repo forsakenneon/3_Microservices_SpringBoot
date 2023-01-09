@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.m1.db.entity.User;
 import com.m1.service.UserService;
 
 import jakarta.servlet.http.HttpServletResponse;
@@ -22,8 +23,8 @@ public class UserRestController {
 	private final UserService userService;
 	
 	@GetMapping(path="/get/{id}")
-	public void getUser(@PathVariable String id, HttpServletResponse response) {
-		userService.getUser(id);
+	public User getUser(@PathVariable String id, HttpServletResponse response) {
+		return userService.getUser(id);
 	}
 	
 	@PostMapping("/add")

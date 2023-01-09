@@ -14,7 +14,7 @@ import com.m1.db.entity.User;
 public interface FeignService {
 
 	@GetMapping(value = "/user/get/{id}")
-	String GetMidName(@PathVariable String id);
+	User GetMidWithLastName(@PathVariable String id);
 	
 	@PostMapping(value = "/user/add/{id}")
 	String PostMidName(@RequestBody User user, @PathVariable String id);
