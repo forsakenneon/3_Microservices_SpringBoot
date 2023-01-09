@@ -6,7 +6,7 @@ import org.bson.Document;
 import org.bson.conversions.Bson;
 import org.springframework.stereotype.Repository;
 
-import com.m1.utils.JsonUtil;
+import com.m2.utils.JsonUtil;
 import com.m2.db.DBContext;
 import com.m2.db.entity.User;
 import com.mongodb.BasicDBObject;
