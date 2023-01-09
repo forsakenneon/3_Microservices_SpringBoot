@@ -16,11 +16,11 @@ public class WebClientService {
 			.defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
 			.defaultHeader(HttpHeaders.ACCEPT, MediaType.APPLICATION_JSON_VALUE).build();
 
-	public String get(String id) {
+	public User get(String id) {
 		return webClient.get()
 				.uri("/get/" + id)
 				.retrieve()
-				.bodyToMono(String.class).block();
+				.bodyToMono(User.class).block();
 	}
 		
 	public ClientResponse post(User user, String id) {

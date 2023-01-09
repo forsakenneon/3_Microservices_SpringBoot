@@ -17,13 +17,11 @@ public class UserService {
 	@Autowired
 	private FeignService feign;
 	
-	public String getUser(String id) {
-		String user= null;
+	public User getUser(String id) {
+		User user = new User();
 		try {
-			String firstname = UserRepository.getFirstName(id);
-			String middlenameWithLastName = feign.GetMidName(id);
-			user = firstname + " " + middlenameWithLastName;
-			System.out.println("Firstname is - " + firstname + " Middlename is - " + middlenameWithLastName);
+			user = feign.GetMidWithLastName(id);
+			user.setFirstName(UserRepository.getFirstName(id));
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
