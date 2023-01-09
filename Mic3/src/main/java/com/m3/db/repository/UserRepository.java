@@ -1,8 +1,11 @@
 package com.m3.db.repository;
 
+import static com.mongodb.client.model.Filters.eq;
+
 import org.bson.Document;
 import org.bson.conversions.Bson;
 
+import com.m3.utils.JsonUtil;
 import com.m3.db.DBContext;
 import com.m3.db.entity.User;
 import com.mongodb.BasicDBObject;
@@ -11,6 +14,13 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.model.Updates;
 
 public class UserRepository {
+	
+	public static String getLastName(String id) throws Exception {
+		MongoCollection<Document> collection = DBContext.fetchCollection("data", "Users", Document.class);
+		Document myDoc = collection.find(eq("_id", id)).first();
+		return JsonUtil.fromJsontoUser(myDoc.toJson()).getLastName();
+	}
+	
 	public static void addLastName(User user, String id) throws Exception {
 		MongoCollection<Document> collection = DBContext.fetchCollection("data", "Users", Document.class);
 		Document found = (Document) collection.find(new Document("_id", id)).first();

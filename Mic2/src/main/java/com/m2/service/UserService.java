@@ -17,15 +17,15 @@ public class UserService {
 	
 	public String getUser(String id) {
 		String middlename = null;
+		String lastname = null;
 		try {
-			middlename = UserRepository.getMiddleName(id);
-			System.out.println("Middlename is - " + middlename);
-			
+			middlename = UserRepository.getMiddleName(id); 
+			lastname = webClientService.get(id);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return middlename;
+		return middlename + " Lastname is - " + lastname;
 	}
 	
 	public void postUser(User user, String id) throws Exception {

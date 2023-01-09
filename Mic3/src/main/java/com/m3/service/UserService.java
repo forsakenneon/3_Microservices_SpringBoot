@@ -7,12 +7,34 @@ import com.m3.db.repository.UserRepository;
 
 @Component
 public class UserService {
-	public void postUser(User user, String id) throws Exception {
-		UserRepository.addLastName(user, id);
+	
+	public String getUser(String id) {
+		String lastname = null;
+		try {
+			lastname = UserRepository.getLastName(id);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return lastname;
+	}
+	
+	public void postUser(User user, String id) {
+		try {
+			UserRepository.addLastName(user, id);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
-	public void putUser(User user, String id) throws Exception {
-		UserRepository.updateLastName(user, id);
+	public void putUser(User user, String id) {
+		try {
+			UserRepository.updateLastName(user, id);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	public void deleteUser(String id) {

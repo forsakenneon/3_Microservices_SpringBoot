@@ -1,6 +1,7 @@
 package com.m3.api.controller;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -19,6 +20,11 @@ import lombok.RequiredArgsConstructor;
 public class UserRestController {
 	
 	private final UserService userService;
+	
+	@GetMapping(path="/get/{id}")
+	public String getUser(@PathVariable String id) {
+		return userService.getUser(id);
+	}
 	
 	@PostMapping("/add/{id}")
 	public void postUser(@RequestBody User user, @PathVariable String id) throws Exception {

@@ -21,9 +21,9 @@ public class UserService {
 		String user= null;
 		try {
 			String firstname = UserRepository.getFirstName(id);
-			String middlename = feign.GetMidName(id);
-			user = firstname + " " + middlename;
-			System.out.println("Firstname is - " + firstname + " Middlename is - " + middlename);
+			String middlenameWithLastName = feign.GetMidName(id);
+			user = firstname + " " + middlenameWithLastName;
+			System.out.println("Firstname is - " + firstname + " Middlename is - " + middlenameWithLastName);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
