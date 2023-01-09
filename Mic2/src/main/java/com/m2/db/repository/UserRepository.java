@@ -1,9 +1,12 @@
 package com.m2.db.repository;
 
+import static com.mongodb.client.model.Filters.eq;
+
 import org.bson.Document;
 import org.bson.conversions.Bson;
 import org.springframework.stereotype.Repository;
 
+import com.m1.utils.JsonUtil;
 import com.m2.db.DBContext;
 import com.m2.db.entity.User;
 import com.mongodb.BasicDBObject;
@@ -13,6 +16,13 @@ import com.mongodb.client.model.Updates;
 
 @Repository
 public class UserRepository {
+	
+	public static String getMiddleName(String id) throws Exception {
+		MongoCollection<Document> collection = DBContext.fetchCollection("data", "Users", Document.class);
+		Document myDoc = collection.find(eq("_id", id)).first();
+		return JsonUtil.fromJsontoUser(myDoc.toJson()).getMiddleName();
+	}
+	
 	public static void addMiddleName(User user, String id) {
 		MongoCollection<Document> collection = DBContext.fetchCollection("data", "Users", Document.class);
 		Document found = (Document) collection.find(new Document("_id", id)).first();

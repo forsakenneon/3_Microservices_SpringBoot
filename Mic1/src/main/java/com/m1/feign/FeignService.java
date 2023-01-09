@@ -2,6 +2,7 @@ package com.m1.feign;
 
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -12,6 +13,9 @@ import com.m1.db.entity.User;
 @FeignClient(name = "m1", url = "http://localhost:8092")
 public interface FeignService {
 
+	@GetMapping(value = "/user/get/{id}")
+	String GetMidName(@PathVariable String id);
+	
 	@PostMapping(value = "/user/add/{id}")
 	String PostMidName(@RequestBody User user, @PathVariable String id);
 
