@@ -14,7 +14,7 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.model.Updates;
 
 public class UserRepository {
-
+	
 	public static String getFirstName(String id) throws Exception {
 		MongoCollection<Document> collection = DBContext.fetchCollection("data", "Users", Document.class);
 		Document myDoc = collection.find(eq("_id", id)).first();
