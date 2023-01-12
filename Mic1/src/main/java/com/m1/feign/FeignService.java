@@ -12,7 +12,7 @@ import com.m1.db.entity.User;
 
 @FeignClient(name = "m1", url = "http://localhost:8092")
 public interface FeignService {
-
+	
 	@GetMapping(value = "/user/get/{id}")
 	User GetMidWithLastName(@PathVariable String id);
 	
